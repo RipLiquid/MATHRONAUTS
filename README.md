@@ -161,7 +161,7 @@ The project was designed to demonstrate core programming concepts while explorin
 
 ## Author
 
-**Daniyal Tauseef,** **and Clarenz Ferrer**
+**Daniyal Tauseef** **& Clarenz Ferrer**
 
 ## License
 
