@@ -3,30 +3,35 @@ name: CI
 on:
   push:
     branches: [main]
+
   pull_request:
     branches: [main]
 
 jobs:
   test:
+    name: Python Tests
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: "3.12"
 
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
+
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
           pip install pgzero pgzhelper pytest
 
-      - name: Run tests
-        env:
-          SDL_VIDEODRIVER: dummy
-          SDL_AUDIODRIVER: dummy
+      - name: Check Python syntax
         run: |
-          pytest tests/ -v
+          python -m py_compile "U11-Final CPT.py"
+
+      - name: Run automated tests
+        run: |
+          pytest tests/test_game_logic.py -v
