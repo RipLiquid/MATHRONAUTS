@@ -1,7 +1,7 @@
 name: Native iOS
 on:
   push:
-    branches: [main, feature/ios-native]
+    branches: [main, feature/ios-native, feature/android-native]
   pull_request:
     branches: [main]
   workflow_dispatch:

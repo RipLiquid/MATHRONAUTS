@@ -1,10 +1,20 @@
 # MATHRONAUTS
 
-> **Native mobile development:** The `feature/ios-native` branch adds an iPhone
-> prototype in [`mobile/ios`](mobile/ios/README.md), preserving the Python game
-> below. This is a GitHub portfolio project developed in VS Code. A separate
-> native Android implementation is planned next. App Store / Play Store
-> publication is outside scope. See [the mobile handoff](mobile/HANDOFF.md).
+MATHRONAUTS includes the original Python game and separate native mobile
+implementations in this repository. Development uses temporary feature branches;
+the versions live together on `main` in separate folders.
+
+| Version | Stack | Location | Current scope |
+| --- | --- | --- | --- |
+| Desktop original | Python / Pygame Zero | Repository root | Five arithmetic stages |
+| iPhone | Swift / SwiftUI / SpriteKit | [mobile/ios](mobile/ios/README.md) | Addition prototype |
+| Android | Kotlin / Android Canvas | [mobile/android](mobile/android/README.md) | Five stages, touch controls, local best score |
+
+This is a resume / GitHub portfolio project, with VS Code as the editor and no
+App Store or Play Store publication planned. The Android workflow produces an
+installable debug APK; the iOS workflow produces a Mac simulator app. See the
+[mobile setup guide](mobile/README.md) and [handoff](mobile/HANDOFF.md) for build
+commands, verification evidence, and limitations.
 
 [![CI](https://github.com/RipLiquid/MATHRONAUTS/actions/workflows/ci.yml/badge.svg)](https://github.com/RipLiquid/MATHRONAUTS/actions/workflows/ci.yml)
 

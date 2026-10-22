@@ -2,6 +2,16 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Android: test, lint and build APK",
+      "type": "shell",
+      "command": "./gradlew",
+      "windows": {"command": ".\\gradlew.bat"},
+      "args": ["testDebugUnitTest", "lintDebug", "assembleDebug"],
+      "options": {"cwd": "${workspaceFolder}/mobile/android"},
+      "group": {"kind": "build", "isDefault": true},
+      "problemMatcher": []
+    },
+    {
       "label": "iOS: test game rules (Mac + Swift required)",
       "type": "process",
       "command": "swift",

@@ -6,3 +6,9 @@ DerivedData/
 *.xcuserstate
 xcuserdata/
 mobile/ios/*.xcodeproj/
+.gradle/
+.kotlin/
+mobile/android/**/build/
+mobile/android/local.properties
+*.jks
+*.keystore
