@@ -1,5 +1,21 @@
 # MATHRONAUTS
 
+MATHRONAUTS includes the original Python game and separate native mobile
+implementations in this repository. Development uses temporary feature branches;
+the versions live together on `main` in separate folders.
+
+| Version | Stack | Location | Current scope |
+| --- | --- | --- | --- |
+| Desktop original | Python / Pygame Zero | Repository root | Five arithmetic stages |
+| iPhone | Swift / SwiftUI / SpriteKit | [mobile/ios](mobile/ios/README.md) | Addition prototype |
+| Android | Kotlin / Android Canvas | [mobile/android](mobile/android/README.md) | Five stages, touch controls, local best score |
+
+This is a resume / GitHub portfolio project, with VS Code as the editor and no
+App Store or Play Store publication planned. The Android workflow produces an
+installable debug APK; the iOS workflow produces a Mac simulator app. See the
+[mobile setup guide](mobile/README.md) and [handoff](mobile/HANDOFF.md) for build
+commands, verification evidence, and limitations.
+
 [![CI](https://github.com/RipLiquid/MATHRONAUTS/actions/workflows/ci.yml/badge.svg)](https://github.com/RipLiquid/MATHRONAUTS/actions/workflows/ci.yml)
 
 MATHRONAUTS is an educational arcade game built in Python that combines space-shooter gameplay with mathematics.
