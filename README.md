@@ -1,5 +1,11 @@
 # MATHRONAUTS
 
+> **Native mobile development:** The `feature/ios-native` branch adds an iPhone
+> prototype in [`mobile/ios`](mobile/ios/README.md), preserving the Python game
+> below. This is a GitHub portfolio project developed in VS Code. A separate
+> native Android implementation is planned next. App Store / Play Store
+> publication is outside scope. See [the mobile handoff](mobile/HANDOFF.md).
+
 [![CI](https://github.com/RipLiquid/MATHRONAUTS/actions/workflows/ci.yml/badge.svg)](https://github.com/RipLiquid/MATHRONAUTS/actions/workflows/ci.yml)
 
 MATHRONAUTS is an educational arcade game built in Python that combines space-shooter gameplay with mathematics.
