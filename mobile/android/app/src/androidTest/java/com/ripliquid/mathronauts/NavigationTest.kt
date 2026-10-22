@@ -20,6 +20,7 @@ import android.content.Context
 import android.os.SystemClock
 import android.view.View
 import android.widget.TextView
+import androidx.test.espresso.matcher.RootMatchers.isPlatformPopup
 
 
 @RunWith(AndroidJUnit4::class)
@@ -33,9 +34,9 @@ class NavigationTest {
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
             onView(withText("Mission settings")).perform(click())
             onView(withContentDescription("Mode")).perform(click())
-            onData(equalTo("Practice")).perform(click())
+            onData(equalTo("Practice")).inRoot(isPlatformPopup()).perform(click())
             onView(withContentDescription("Difficulty")).perform(click())
-            onData(equalTo("Easy")).perform(click())
+            onData(equalTo("Easy")).inRoot(isPlatformPopup()).perform(click())
             onView(withText("Save")).perform(click())
             onView(withText("Start practice")).perform(click())
             screenshot("practice")

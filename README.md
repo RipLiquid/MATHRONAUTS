@@ -9,6 +9,7 @@ Originally developed in Python for an ICS3U Computer Science final project, it n
 | Platform | Technologies | Location | Features |
 |---|---|---|---|
 | Desktop | Python, Pygame Zero | Repository root | Five arithmetic stages |
+| Desktop enhanced | Python, Pygame Zero | [Optional launcher](desktop/README.md) | Difficulty, practice, review and local statistics |
 | iOS | Swift, SwiftUI, SpriteKit | [iOS app](mobile/ios/README.md) | Five stages, difficulty, offline practice and statistics |
 | Android | Kotlin, Android Canvas | [Android app](mobile/android/README.md) | Five stages, difficulty, offline practice and statistics |
 
@@ -26,6 +27,10 @@ Solve each question and fire at the correct answer meteor before the wave reache
 Both mobile apps also offer **Easy, Normal, and Hard** difficulty and an untimed
 **Practice Mode** with operation selection, ten-question results, answer review,
 and learning statistics saved on the device. See the [mobile guide](mobile/README.md).
+
+The original **`U11-Final CPT.py` stays unchanged**. Run **`python MATHRONAUTS.py`**
+to enable the same offline learning features through a separate Pygame launcher.
+See the [desktop extension guide](desktop/README.md).
 
 ## Overview
 
@@ -120,9 +125,8 @@ cd MATHRONAUTS
 Make sure Python 3 is installed, then install the required packages:
 
 ```bash
-pip install pgzero
-pip install pgzhelper
-pip install pytest
+python -m pip install -r requirements-desktop.txt
+python -m pip install pytest
 ```
 
 ### 3. Run the Game

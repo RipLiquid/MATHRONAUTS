@@ -191,7 +191,7 @@ class MainActivity : Activity() {
         val panel = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL; setPadding(dp(20), dp(8), dp(20), dp(8)) }
         fun selector(label: String, values: List<String>, selected: Int): Spinner {
             panel.addView(TextView(this).apply { text = label; textSize = 16f })
-            return Spinner(this).apply {
+            return Spinner(this, Spinner.MODE_DROPDOWN).apply {
                 contentDescription = label
                 adapter = ArrayAdapter(this@MainActivity, android.R.layout.simple_spinner_dropdown_item, values)
                 setSelection(selected); panel.addView(this)

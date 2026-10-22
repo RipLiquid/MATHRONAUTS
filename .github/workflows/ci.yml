@@ -26,7 +26,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install pgzero pgzhelper pytest
+          python -m pip install -r requirements-desktop.txt pytest
 
       - name: Check Python syntax
         run: |
@@ -34,4 +34,13 @@ jobs:
 
       - name: Run automated tests
         run: |
-          pytest tests/test_game_logic.py -v
+          python -m pytest tests/test_game_logic.py tests/test_desktop_learning.py -v
+      - name: Test optional desktop launcher with real projectiles
+        run: python MATHRONAUTS.py --smoke-test desktop-test-artifacts
+      - name: Upload desktop screenshots
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: Mathronauts-Desktop-tests
+          path: desktop-test-artifacts/
+          if-no-files-found: warn
