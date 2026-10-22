@@ -36,18 +36,18 @@ class MainActivity : Activity() {
         paused = playing
         val root = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            gravity = Gravity.CENTER_HORIZONTAL
+            gravity = Gravity.CENTER
             setBackgroundColor(Color.rgb(8, 13, 32))
             setPadding(dp(16), dp(16), dp(16), dp(16))
         }
         root.setOnApplyWindowInsetsListener { view, insets ->
             val safe = if (android.os.Build.VERSION.SDK_INT >= 30) {
-                insets.getInsets(WindowInsets.Type.systemBars() or WindowInsets.Type.displayCutout())
-            } else null
-            val top = safe?.top ?: insets.systemWindowInsetTop
-            val bottom = safe?.bottom ?: insets.systemWindowInsetBottom
-            view.setPadding(dp(16) + (safe?.left ?: 0), dp(8) + top,
-                dp(16) + (safe?.right ?: 0), dp(8) + bottom)
+                val bounds = insets.getInsets(WindowInsets.Type.systemBars() or WindowInsets.Type.displayCutout())
+                intArrayOf(bounds.left, bounds.top, bounds.right, bounds.bottom)
+            } else intArrayOf(insets.systemWindowInsetLeft, insets.systemWindowInsetTop,
+                insets.systemWindowInsetRight, insets.systemWindowInsetBottom)
+            view.setPadding(dp(16) + safe[0], dp(8) + safe[1],
+                dp(16) + safe[2], dp(8) + safe[3])
             insets
         }
         fun label(size: Float) = TextView(this).apply {
@@ -137,6 +137,7 @@ class MainActivity : Activity() {
         pauseButton.text = if (paused) "Resume" else "Pause"
         menuButton.visibility = if (playing) View.VISIBLE else View.GONE
         if (game.isOver && playing) status.text = "Final score: ${game.score}. Launch another mission!"
+        if (!playing) status.text = "Solve arithmetic problems to protect the mothership."
         field.sync(game)
         field.pause(!playing || paused || game.isOver)
         refreshAnswers()
