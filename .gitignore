@@ -12,3 +12,7 @@ mobile/android/**/build/
 mobile/android/local.properties
 *.jks
 *.keystore
+.venv/
+local_data/
+scores_list
+desktop-test-artifacts/

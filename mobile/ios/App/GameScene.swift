@@ -4,6 +4,7 @@ import MathronautsCore
 final class GameScene: SKScene {
     var onAnswer: ((Int, UUID) -> Void)?
     var onExpired: ((UUID) -> Void)?
+    var onBusyChanged: ((Bool) -> Void)?
     private let ship = SKSpriteNode(imageNamed: "spaceship4")
     private var meteors: [SKSpriteNode] = []
     private var questionID: UUID?
@@ -11,6 +12,8 @@ final class GameScene: SKScene {
     private var activeShot: SKNode?
     private var previousTime: TimeInterval?
     private var movementTouch: UITouch?
+    private var waveSpeed: CGFloat = 10
+    private var practice = false
 
     override init(size: CGSize) {
         super.init(size: size)
@@ -41,6 +44,8 @@ final class GameScene: SKScene {
     }
 
     func present(_ session: GameSession) {
+        waveSpeed = CGFloat(session.settings.difficulty.waveSpeed)
+        practice = session.isPractice
         let newWave = questionID != session.question.id
         if newWave {
             activeShot?.removeAllActions()
@@ -81,9 +86,9 @@ final class GameScene: SKScene {
 
     override func update(_ currentTime: TimeInterval) {
         defer { previousTime = currentTime }
-        guard let previousTime, let questionID, !shotInFlight else { return }
+        guard let previousTime, let questionID, !shotInFlight, !practice else { return }
         let delta = CGFloat(min(max(currentTime - previousTime, 0), 1.0 / 15))
-        for meteor in meteors { meteor.position.x -= 10 * delta }
+        for meteor in meteors { meteor.position.x -= waveSpeed * delta }
         if meteors.contains(where: { $0.position.x <= 110 }) {
             onExpired?(questionID)
         }
@@ -114,9 +119,14 @@ final class GameScene: SKScene {
 
     private func moveShip(to y: CGFloat) { ship.position.y = min(max(y, 30), size.height - 30) }
 
+    func fire(answer: Int) {
+        if let meteor = meteors.first(where: { $0.name == String(answer) }) { fire(at: meteor) }
+    }
+
     private func fire(at meteor: SKSpriteNode) {
         guard !shotInFlight, let id = questionID, let answer = Int(meteor.name ?? "") else { return }
         shotInFlight = true
+        onBusyChanged?(true)
         // Freeze the wave during this shot so its selected target stays under the impact.
         let shot = SKShapeNode(circleOfRadius: 5)
         shot.fillColor = .cyan
@@ -131,6 +141,7 @@ final class GameScene: SKScene {
             guard let self else { return }
             self.activeShot = nil
             self.shotInFlight = false
+            self.onBusyChanged?(false)
             self.previousTime = nil
             self.onAnswer?(answer, id)
         }]))

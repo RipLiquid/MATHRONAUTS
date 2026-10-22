@@ -1,6 +1,6 @@
 # MATHRONAUTS for iPhone
 
-Native Swift / SwiftUI / SpriteKit addition prototype, extending the original
+Native Swift / SwiftUI / SpriteKit game, extending the original
 Python project. Developed as a GitHub portfolio project, with VS Code as the
 editor. No store publication is planned.
 
@@ -9,17 +9,23 @@ editor. No store publication is planned.
 - Menu, four moving answer meteors, original background/ship/meteor artwork.
 - Drag in the left lane to move; tap a meteor to fire a visible projectile.
 - Answer resolves at impact. Further taps are ignored until the shot finishes.
-- Correct answer: +10 points and a new question. Wrong answer: -1 life and
+- Arcade correct answer: +10 points and a new question. Wrong answer: -1 life and
   removal of the selected meteor; the current question remains.
 - Three lives; game over, replay, pause, and main menu.
 - A wave reaching the defense line costs one life and starts a new question.
 - App backgrounding pauses the scene; explicitly resume after returning.
 - Independent Swift package for rules, with deterministic generator tests.
+- Five Arcade stages with original progression; Easy/Normal/Hard difficulty.
+- Ten-question untimed Practice for any operation or mixed arithmetic.
+- Results, answer review, accuracy charts, best streak and completed-round counts.
+- Settings, difficulty-specific Arcade best scores and learning statistics saved locally.
+- Native answer buttons as an alternative to tapping SpriteKit targets.
 
-This is the first vertical slice. Other operations, progression, saved high
-scores, audio, explosion animations, app icons, and accessibility of individual
-SpriteKit targets remain future work. Manual simulator/device validation is
-still required, including layout, touch interaction and sprite orientation.
+See the [mobile guide](../README.md) for difficulty ranges and statistics rules.
+Audio, explosion animations and app icons remain future work. The workflow tests
+the Practice flow in an iPhone Simulator; physical-device gameplay still needs
+validation. Active rounds start fresh after a full app relaunch; saved statistics
+and settings persist.
 
 ## Work in VS Code on Windows
 

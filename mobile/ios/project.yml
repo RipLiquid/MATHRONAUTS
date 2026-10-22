@@ -33,8 +33,21 @@ targets:
         TARGETED_DEVICE_FAMILY: '1'
         MARKETING_VERSION: '0.1.0'
         CURRENT_PROJECT_VERSION: '1'
+  MathronautsUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: UITests
+    dependencies:
+      - target: Mathronauts
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
 schemes:
   Mathronauts:
     build:
       targets:
         Mathronauts: all
+    test:
+      targets:
+        - MathronautsUITests

@@ -9,8 +9,9 @@ Originally developed in Python for an ICS3U Computer Science final project, it n
 | Platform | Technologies | Location | Features |
 |---|---|---|---|
 | Desktop | Python, Pygame Zero | Repository root | Five arithmetic stages |
-| iOS | Swift, SwiftUI, SpriteKit | [iOS app](mobile/ios/README.md) | Addition prototype |
-| Android | Kotlin, Android Canvas | [Android app](mobile/android/README.md) | Five stages, touch controls, saved best score |
+| Desktop enhanced | Python, Pygame Zero | [Optional launcher](desktop/README.md) | Difficulty, practice, review and local statistics |
+| iOS | Swift, SwiftUI, SpriteKit | [iOS app](mobile/ios/README.md) | Five stages, difficulty, offline practice and statistics |
+| Android | Kotlin, Android Canvas | [Android app](mobile/android/README.md) | Five stages, difficulty, offline practice and statistics |
 
 See the **[mobile setup guide](mobile/README.md)** for build instructions, requirements, and downloading mobile build artifacts.
 
@@ -21,9 +22,15 @@ Solve each question and fire at the correct answer meteor before the wave reache
 - Earn **10 points** for each correct answer.
 - Start with **three lives**.
 - Lose a life for an incorrect answer or a wave reaching the defense line.
-- Progress through **addition, subtraction, multiplication, division, and mixed operations** in the desktop and Android versions.
+- Progress through **addition, subtraction, multiplication, division, and mixed operations**.
 
-The iOS version currently implements the addition stage.
+Both mobile apps also offer **Easy, Normal, and Hard** difficulty and an untimed
+**Practice Mode** with operation selection, ten-question results, answer review,
+and learning statistics saved on the device. See the [mobile guide](mobile/README.md).
+
+The original **`U11-Final CPT.py` stays unchanged**. Run **`python MATHRONAUTS.py`**
+to enable the same offline learning features through a separate Pygame launcher.
+See the [desktop extension guide](desktop/README.md).
 
 ## Overview
 
@@ -118,9 +125,8 @@ cd MATHRONAUTS
 Make sure Python 3 is installed, then install the required packages:
 
 ```bash
-pip install pgzero
-pip install pgzhelper
-pip install pytest
+python -m pip install -r requirements-desktop.txt
+python -m pip install pytest
 ```
 
 ### 3. Run the Game

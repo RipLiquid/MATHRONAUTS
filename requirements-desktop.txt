@@ -1,0 +1,4 @@
+pgzero==1.2.1
+pygame==2.6.1
+# The similarly named PyPI package lacks the original game's Actor extensions.
+pgzhelper @ git+https://github.com/QuirkyCort/pgzhelper.git@f822eb105e6a3e6ce3da3b266c5356d9f847be78

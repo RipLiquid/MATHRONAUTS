@@ -22,6 +22,15 @@ shots are ignored while it resolves.
   question, progress, lives, available choices and positions; an in-flight shot
   is cancelled on recreation without scoring. Explicitly resume to continue.
 
+## Difficulty, practice and statistics
+
+Use **Mission settings** to select Easy/Normal/Hard, Arcade/Practice and the
+Practice operation. Practice is ten untimed questions without life loss. Results
+include accuracy, best streak and answer review. **Learning statistics** shows
+saved accuracy bars by operation and completed practice rounds. Data is stored
+only on the device. See the [mobile guide](../README.md) for ranges, counting
+rules, reset behavior and platform persistence details.
+
 ## Build and run in VS Code
 
 Requirements: JDK **17**, Android command-line SDK with platform **35** and build
@@ -46,8 +55,8 @@ have checksum verification. Minimum Android **8.0 / API 26**, target **API 35**.
 The debug APK uses a development signing key automatically; no store account or
 release keystore is required. Never commit local signing keys or SDK paths.
 
-The GitHub **Native Android** workflow installs the toolchain, runs seven unit
-tests, lint, APK compilation and an API-35 emulator navigation/recreation test.
+The GitHub **Native Android** workflow installs the toolchain, runs unit
+tests, lint, APK compilation and API-35 navigation and full Practice-flow tests.
 The artifact includes the APK, reports and emulator screenshots on a successful
 run. See [Native Android Actions](https://github.com/RipLiquid/MATHRONAUTS/actions/workflows/android-ci.yml) for actual results; a workflow's existence
 alone does not mean its checks have passed.
