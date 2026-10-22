@@ -48,6 +48,12 @@ An API-35 emulator test covers launch, pause, activity recreation, resume and
 return to menu, with screenshots. Inspect Native Android Actions for actual
 results; no success is claimed before verification.
 
+Verification checkpoint: Android's seven unit tests, lint, APK build and one
+API-35 instrumentation test passed in run 39801957156. That run's overall status
+was failure because screenshot collection occurred after app uninstall. The
+workflow now keeps the test app installed until screenshots are copied. Verify
+the follow-up run before merging. Physical-device gameplay checks remain open.
+
 ## Build commands
 
 Android uses JDK 17, Gradle wrapper 8.11.1, AGP 8.9.2, Kotlin 2.1.20, Android

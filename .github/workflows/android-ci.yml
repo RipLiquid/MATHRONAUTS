@@ -46,7 +46,7 @@ jobs:
           disable-animations: true
           working-directory: mobile/android
           script: |
-            ./gradlew connectedDebugAndroidTest --stacktrace
+            ./gradlew connectedDebugAndroidTest -Pandroid.injected.androidTest.leaveApksInstalledAfterRun=true --stacktrace
             adb pull /sdcard/Android/data/com.ripliquid.mathronauts/files/screenshots app/build/reports/screenshots
       - name: Upload APK and verification reports
         if: always()
