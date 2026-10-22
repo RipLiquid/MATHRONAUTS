@@ -24,6 +24,8 @@ jobs:
         run: |
           printf '%s  %s\n' "$(cat gradle/wrapper/wrapper.sha256)" gradle/wrapper/gradle-wrapper.jar | sha256sum -c -
       - name: Install pinned Android SDK
+        uses: android-actions/setup-android@v3
+      - name: Install platform and build tools
         run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
       - name: Test, lint and build installable debug APK
         run: ./gradlew testDebugUnitTest lintDebug assembleDebug --stacktrace
