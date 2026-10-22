@@ -49,6 +49,15 @@ Local checks: all six original Python test functions passed by direct invocation
 (pytest is absent in the bundled Python environment); VS Code JSON parsed
 successfully. Swift compilation and execution require the macOS workflow.
 
+Publication is currently blocked: command-line Git has no authenticated account
+in this environment, and the connected GitHub integration rejected a write with
+HTTP 403 (`Resource not accessible by integration`). No remote branch or CI run
+was created. From the repository root in the user's authenticated VS Code
+terminal, run `git push -u origin feature/ios-native`, then inspect **Native iOS**
+in Actions. The first implementation commit is `c2d9097`; later documentation
+commits may follow it. Do not describe this milestone as pushed or build-verified
+until those steps succeed.
+
 ## Milestones and next steps
 
 1. Obtain a green macOS core-test and simulator-build workflow; correct failures.

@@ -32,7 +32,7 @@ jobs:
           -destination 'generic/platform=iOS Simulator'
           -derivedDataPath DerivedData CODE_SIGNING_ALLOWED=NO
       - name: Upload simulator app
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: Mathronauts-iOS-Simulator
           path: mobile/ios/DerivedData/Build/Products/Debug-iphonesimulator/Mathronauts.app
