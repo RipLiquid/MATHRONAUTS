@@ -30,9 +30,9 @@ difficulty before starting. Arcade best scores are separated by difficulty.
 
 | Difficulty | Addition operands | Subtraction first operand | Multiplication/division table | Arcade wave speed |
 | --- | --- | --- | --- | --- |
-| Easy | 1–10 | 1–20 | 1–5 | 7 scene units/second |
-| Normal | 1–25 | 1–50 | 1–10 | 10 scene units/second |
-| Hard | 1–50 | 1–100 | 1–12 | 15 scene units/second |
+| Easy | 1–10 | 1–20 | 1–5 | 14 scene units/second |
+| Normal | 1–25 | 1–50 | 1–10 | 20 scene units/second |
+| Hard | 1–50 | 1–100 | 1–12 | 30 scene units/second |
 
 Subtraction stays nonnegative. Division uses a nonzero divisor and exact whole
 answers; the table limit applies to the answer and divisor, so the dividend can

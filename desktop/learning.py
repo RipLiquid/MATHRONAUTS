@@ -20,7 +20,7 @@ class Difficulty(str, Enum):
 
     @property
     def speed(self):
-        return {self.EASY: 7, self.NORMAL: 10, self.HARD: 15}[self]
+        return {self.EASY: 14, self.NORMAL: 20, self.HARD: 30}[self]
 
 
 @dataclass(frozen=True)

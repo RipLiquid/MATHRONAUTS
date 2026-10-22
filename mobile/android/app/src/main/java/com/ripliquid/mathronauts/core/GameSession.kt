@@ -10,7 +10,7 @@ enum class Operation(val symbol: String, val title: String) {
 
 enum class Difficulty(val title: String, val additionLimit: Int, val subtractionLimit: Int,
                       val tableLimit: Int, val waveSpeed: Float) {
-    EASY("Easy", 10, 20, 5, 7f), NORMAL("Normal", 25, 50, 10, 10f), HARD("Hard", 50, 100, 12, 15f)
+    EASY("Easy", 10, 20, 5, 14f), NORMAL("Normal", 25, 50, 10, 20f), HARD("Hard", 50, 100, 12, 30f)
 }
 
 enum class GameMode(val title: String) { ARCADE("Arcade"), PRACTICE("Practice") }

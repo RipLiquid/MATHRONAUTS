@@ -25,7 +25,7 @@ public enum Difficulty: String, Codable, CaseIterable {
     public var additionLimit: Int { self == .easy ? 10 : self == .normal ? 25 : 50 }
     public var subtractionLimit: Int { additionLimit * 2 }
     public var tableLimit: Int { self == .easy ? 5 : self == .normal ? 10 : 12 }
-    public var waveSpeed: Double { self == .easy ? 7 : self == .normal ? 10 : 15 }
+    public var waveSpeed: Double { self == .easy ? 14 : self == .normal ? 20 : 30 }
 }
 
 public enum GameMode: String, Codable, CaseIterable { case arcade = "Arcade", practice = "Practice" }
