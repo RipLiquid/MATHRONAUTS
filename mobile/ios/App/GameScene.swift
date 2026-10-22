@@ -12,7 +12,7 @@ final class GameScene: SKScene {
     private var activeShot: SKNode?
     private var previousTime: TimeInterval?
     private var movementTouch: UITouch?
-    private var waveSpeed: CGFloat = 10
+    private var waveSpeed: CGFloat = 20
     private var practice = false
 
     override init(size: CGSize) {
