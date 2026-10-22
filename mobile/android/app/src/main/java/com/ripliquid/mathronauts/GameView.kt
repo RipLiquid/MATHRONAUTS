@@ -85,8 +85,10 @@ class GameView(context: Context) : View(context) {
                     onBusyChanged(false)
                 }
             } else {
-                waveX -= 10f * delta
-                if (waveX <= 110f) onExpired(waveId)
+                if (!session.isPractice) {
+                    waveX -= session.settings.difficulty.waveSpeed * delta
+                    if (waveX <= 110f) onExpired(waveId)
+                }
             }
         }
         val scale = min(width / 390f, height / 650f)

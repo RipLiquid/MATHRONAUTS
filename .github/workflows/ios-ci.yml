@@ -37,3 +37,17 @@ jobs:
           name: Mathronauts-iOS-Simulator
           path: mobile/ios/DerivedData/Build/Products/Debug-iphonesimulator/Mathronauts.app
           if-no-files-found: error
+      - name: Practice flow on iPhone Simulator
+        run: |
+          DEVICE_ID=$(xcrun simctl list devices available -j | python3 -c 'import json,sys; print(next(d["udid"] for group in json.load(sys.stdin)["devices"].values() for d in group if d["name"].startswith("iPhone")))')
+          xcodebuild test -project Mathronauts.xcodeproj -scheme Mathronauts \
+            -destination "platform=iOS Simulator,id=$DEVICE_ID" \
+            -derivedDataPath DerivedData -resultBundlePath PracticeTests.xcresult \
+            CODE_SIGNING_ALLOWED=NO
+      - name: Upload iOS test results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: Mathronauts-iOS-tests
+          path: mobile/ios/PracticeTests.xcresult
+          if-no-files-found: warn
