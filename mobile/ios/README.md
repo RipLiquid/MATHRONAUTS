@@ -33,7 +33,7 @@ unsigned simulator build.
 The workflow runs core tests, generates the Xcode project from `project.yml`,
 and compiles a simulator app. Its artifact runs on an iOS Simulator on a Mac;
 it is not an iPhone-installable IPA, Windows executable, or browser demo.
-No successful workflow run is claimed until verified in the handoff.
+See [Native iOS Actions](https://github.com/RipLiquid/MATHRONAUTS/actions/workflows/ios-ci.yml) for build and test results.
 
 ## Build on a Mac, still using VS Code
 

@@ -49,7 +49,7 @@ release keystore is required. Never commit local signing keys or SDK paths.
 The GitHub **Native Android** workflow installs the toolchain, runs seven unit
 tests, lint, APK compilation and an API-35 emulator navigation/recreation test.
 The artifact includes the APK, reports and emulator screenshots on a successful
-run. See [the handoff](../HANDOFF.md) for actual results; a workflow's existence
+run. See [Native Android Actions](https://github.com/RipLiquid/MATHRONAUTS/actions/workflows/android-ci.yml) for actual results; a workflow's existence
 alone does not mean its checks have passed.
 
 ## Architecture
