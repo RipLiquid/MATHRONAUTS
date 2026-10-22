@@ -1,20 +1,29 @@
 # MATHRONAUTS
 
-MATHRONAUTS includes the original Python game and separate native mobile
-implementations in this repository. Development uses temporary feature branches;
-the versions live together on `main` in separate folders.
+MATHRONAUTS is an educational space-shooter game where players solve arithmetic problems by shooting the meteor containing the correct answer.
 
-| Version | Stack | Location | Current scope |
-| --- | --- | --- | --- |
-| Desktop original | Python / Pygame Zero | Repository root | Five arithmetic stages |
-| iPhone | Swift / SwiftUI / SpriteKit | [mobile/ios](mobile/ios/README.md) | Addition prototype |
-| Android | Kotlin / Android Canvas | [mobile/android](mobile/android/README.md) | Five stages, touch controls, local best score |
+Originally developed in Python for an ICS3U Computer Science final project, it now includes separate native iOS and Android implementations.
 
-[![CI](https://github.com/RipLiquid/MATHRONAUTS/actions/workflows/ci.yml/badge.svg)](https://github.com/RipLiquid/MATHRONAUTS/actions/workflows/ci.yml)
+## Versions
 
-MATHRONAUTS is an educational arcade game built in Python that combines space-shooter gameplay with mathematics.
+| Platform | Technologies | Location | Features |
+|---|---|---|---|
+| Desktop | Python, Pygame Zero | Repository root | Five arithmetic stages |
+| iOS | Swift, SwiftUI, SpriteKit | [iOS app](mobile/ios/README.md) | Addition prototype |
+| Android | Kotlin, Android Canvas | [Android app](mobile/android/README.md) | Five stages, touch controls, saved best score |
 
-Inspired by classic arcade games such as *Space Invaders*, the player controls a spaceship and solves math problems by shooting the meteor containing the correct answer. The project was originally developed as an ICS3U Computer Science final project with the goal of making mathematics practice more interactive and engaging for younger students.
+See the **[mobile setup guide](mobile/README.md)** for build instructions, requirements, and downloading mobile build artifacts.
+
+## Gameplay
+
+Solve each question and fire at the correct answer meteor before the wave reaches your defense line.
+
+- Earn **10 points** for each correct answer.
+- Start with **three lives**.
+- Lose a life for an incorrect answer or a wave reaching the defense line.
+- Progress through **addition, subtraction, multiplication, division, and mixed operations** in the desktop and Android versions.
+
+The iOS version currently implements the addition stage.
 
 ## Overview
 
