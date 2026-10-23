@@ -37,7 +37,7 @@ class OptionalSounds:
 def load_game(data_dir=None):
     from pgzero.runner import prepare_mod
     from pgzero.loaders import SoundLoader
-    from .enhancements import EnhancedGame
+    from .online import OnlineGame as EnhancedGame
 
     os.chdir(ROOT)
     # The original background is MP3. Pygame 2.6 supports it, while Pygame

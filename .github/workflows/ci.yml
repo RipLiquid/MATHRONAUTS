@@ -7,6 +7,11 @@ on:
   pull_request:
     branches: [main]
 
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
 jobs:
   test:
     name: Python Tests
@@ -31,10 +36,11 @@ jobs:
       - name: Check Python syntax
         run: |
           python -m py_compile "U11-Final CPT.py"
+          python -m compileall -q desktop aws/leaderboard
 
       - name: Run automated tests
         run: |
-          python -m pytest tests/test_game_logic.py tests/test_desktop_learning.py -v
+          python -m pytest tests/ -v
       - name: Test optional desktop launcher with real projectiles
         run: python MATHRONAUTS.py --smoke-test desktop-test-artifacts
       - name: Upload desktop screenshots
@@ -44,3 +50,17 @@ jobs:
           name: Mathronauts-Desktop-tests
           path: desktop-test-artifacts/
           if-no-files-found: warn
+
+  leaderboard-live:
+    name: AWS Leaderboard Connection
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Read live rankings without submitting scores
+        run: python -m desktop.check_leaderboard

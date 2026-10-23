@@ -2,14 +2,14 @@
 
 MATHRONAUTS is an educational space-shooter game where players solve arithmetic problems by shooting the meteor containing the correct answer.
 
-Originally developed in Python for an ICS3U Computer Science final project, it now includes separate native iOS and Android implementations.
+Originally developed in Python for a 2023 ICS3U Computer Science final project, it now includes an enhanced desktop launcher, native iOS and Android apps, and an optional AWS leaderboard on desktop.
 
 ## Versions
 
 | Platform | Technologies | Location | Features |
 |---|---|---|---|
 | Desktop | Python, Pygame Zero | Repository root | Five arithmetic stages |
-| Desktop enhanced | Python, Pygame Zero | [Optional launcher](desktop/README.md) | Difficulty, practice, review and local statistics |
+| Desktop enhanced | Python, Pygame Zero | [Optional launcher](desktop/README.md) | Difficulty, practice, review, local statistics and optional AWS leaderboard |
 | iOS | Swift, SwiftUI, SpriteKit | [iOS app](mobile/ios/README.md) | Five stages, difficulty, offline practice and statistics |
 | Android | Kotlin, Android Canvas | [Android app](mobile/android/README.md) | Five stages, difficulty, offline practice and statistics |
 
@@ -31,6 +31,24 @@ and learning statistics saved on the device. See the [mobile guide](mobile/READM
 The original **`U11-Final CPT.py` stays unchanged**. Run **`python MATHRONAUTS.py`**
 to enable the same offline learning features through a separate Pygame launcher.
 See the [desktop extension guide](desktop/README.md).
+
+## Optional online leaderboard
+
+The enhanced desktop menu includes **Online leaderboard** for the selected
+difficulty. After a completed Arcade round, choose **Submit score**, enter a
+3–16 character nickname, and submit. The top ten scores are ranked separately
+for Easy, Normal and Hard. Practice scores stay local.
+
+Requests run in the background with a five-second network timeout. Gameplay and
+local progress work without a connection; no account or AWS credentials are
+needed to play. Only opening rankings or explicitly submitting a score contacts
+the service. Submissions store the nickname, difficulty, score and a server
+timestamp in DynamoDB through an AWS Lambda HTTPS endpoint.
+
+This is a small demo leaderboard: scores are client-submitted, nicknames are
+not unique accounts, and each submitted round is a separate entry. AWS usage
+is subject to the owner's account allowances and credits. Native mobile
+leaderboards are not implemented yet. See the [AWS setup and API](aws/leaderboard/README.md).
 
 ## Overview
 
@@ -71,6 +89,7 @@ The final level randomly generates questions using all four arithmetic operation
 * Custom selection-sort implementation for the high-score leaderboard
 * Automated testing with Pytest
 * Continuous Integration with GitHub Actions
+* Optional desktop leaderboard with AWS Lambda and DynamoDB
 
 ## Controls
 
@@ -92,22 +111,25 @@ The final level randomly generates questions using all four arithmetic operation
 * GitHub Actions
 * Python `random` module
 * Python file I/O
+* AWS Lambda and Amazon DynamoDB (optional desktop leaderboard)
 
 ## Project Structure
 
 ```text
 MATHRONAUTS/
-│
-├── .github/
-│   └── workflows/
-│       └── ci.yml              # GitHub Actions CI workflow
-│
-├── images/                     # Sprites, backgrounds, and animations
-├── sounds/                     # Music and sound effects
-├── fonts/                      # Game fonts
-├── tests/                      # Automated tests
-│
-├── U11-Final CPT.py            # Main game
+├── .github/workflows/          # Python, Android and iOS CI
+├── aws/leaderboard/            # Lambda source and manual deployment guide
+├── desktop/                    # Enhanced game, offline rules and online client
+├── mobile/
+│   ├── android/                # Native Kotlin app
+│   └── ios/                    # Native SwiftUI/SpriteKit app
+├── tests/                      # Game rules and desktop leaderboard tests
+├── images/                     # Original sprites and backgrounds
+├── sounds/                     # Original audio assets
+├── fonts/                      # Original fonts
+├── MATHRONAUTS.py              # Enhanced desktop entry point
+├── U11-Final CPT.py            # Preserved original 2023 game
+├── requirements-desktop.txt
 └── README.md
 ```
 
@@ -131,15 +153,22 @@ python -m pip install pytest
 
 ### 3. Run the Game
 
-```bash
+For the enhanced desktop game:
+
+```powershell
+python MATHRONAUTS.py
+```
+
+To run the preserved original game instead:
+
+```powershell
 python "U11-Final CPT.py"
 ```
 
-Depending on your system, you may need to use:
-
-```bash
-python3 "U11-Final CPT.py"
-```
+The original entry point retains its historical file and audio assumptions.
+The enhanced launcher skips the inherited background-music asset if it cannot
+be decoded. Install the pinned requirements: the similarly named PyPI
+`pgzhelper` package is not the Actor helper used by this project.
 
 ## Technical Implementation
 
@@ -177,26 +206,34 @@ Scores are stored locally and loaded when the game starts. A custom selection-so
 
 ## Testing and Continuous Integration
 
-MATHRONAUTS uses automated testing to help verify core game logic and prevent regressions as the project changes.
+Run the offline checks from the repository root:
 
-Tests are located in the `tests/` directory and can be run locally using:
-
-```bash
-pytest tests/ -v
+```powershell
+python -m pytest tests/ -v
+python MATHRONAUTS.py --smoke-test desktop-test-artifacts
 ```
 
-The repository also includes a GitHub Actions Continuous Integration workflow.
+The Python suite covers arithmetic, progression, local persistence, leaderboard
+request/response handling, network failures and optional UI transitions. These
+tests simulate network responses and do not need AWS. The desktop smoke check
+loads the preserved game and exercises actual projectile collisions, a full
+Practice round, results, statistics and storage reset, then saves screenshots.
 
-The CI pipeline automatically:
+Check the deployed AWS connection separately:
 
-1. Checks out the latest version of the repository.
-2. Sets up the Python environment.
-3. Installs the required dependencies.
-4. Runs the automated test suite.
+```powershell
+python -m desktop.check_leaderboard
+```
 
-The workflow runs whenever code is pushed to `main` or a pull request targeting `main` is created.
+This reads all three difficulty rankings and validates their response structure
+and ordering. It never inserts test scores or deletes entries. Availability of
+the live service is required for this check; ordinary gameplay remains offline.
 
-This provides an automated check that changes do not break previously tested functionality.
+GitHub Actions runs Python tests, desktop smoke, a separate **AWS Leaderboard
+Connection** check, Android tests/builds, and iOS tests/simulator builds for pull
+requests into `main` and pushes to `main`. The Python workflow also supports
+manual runs. CI does not deploy the Lambda source or replace manual playtesting.
+See the [desktop](desktop/README.md) and [mobile](mobile/README.md) guides.
 
 ## Learning Outcomes
 
@@ -226,4 +263,6 @@ The project has since been maintained and improved with modern development pract
 
 ## Authors
 
-**Daniyal Tauseef & Clarenz Ferrer**
+**Daniyal Tauseef & Clarenz Ferrer** — original 2023 base project.
+
+Further development by Daniyal Tauseef.
