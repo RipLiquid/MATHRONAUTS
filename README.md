@@ -263,6 +263,6 @@ The project has since been maintained and improved with modern development pract
 
 ## Authors
 
-**Daniyal Tauseef & Clarenz Ferrer** — original 2023 base project.
+**Daniyal Tauseef & Clarenz Ferrer** — original 2023 ICS3U base project.
 
 Further development by Daniyal Tauseef.
