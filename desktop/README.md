@@ -3,6 +3,16 @@
 `U11-Final CPT.py` remains the original base game, unchanged. New functionality
 is kept in separate files and enabled only when running `MATHRONAUTS.py`.
 
+On Windows 10/11 (64-bit Intel/AMD), double-click **`Play-MATHRONAUTS.cmd`**
+to set up missing Python 3.12, pip and dependencies and launch automatically.
+The same single file can download the game when it is run by itself. First-time
+setup needs internet; subsequent launches reuse the private environment. See
+the [Windows setup guide](../scripts/README.md) for storage, logs and updating.
+The launcher uses its own progress folder under `%LOCALAPPDATA%\MATHRONAUTS`,
+separate from a developer checkout's `local_data`.
+
+For manual development setup:
+
 ```powershell
 python -m pip install -r requirements-desktop.txt
 python MATHRONAUTS.py
