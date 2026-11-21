@@ -37,7 +37,8 @@ def main():
     target = ROOT / 'Play-MATHRONAUTS.cmd'
     expected = build()
     if args.check:
-        if not target.exists() or target.read_bytes() != expected:
+        # Git source ZIPs use LF even when Windows checkouts use CRLF.
+        if not target.exists() or target.read_bytes().replace(b'\r\n', b'\n') != expected.replace(b'\r\n', b'\n'):
             raise SystemExit('Rebuild Play-MATHRONAUTS.cmd: python scripts/build_launcher.py')
     else:
         target.write_bytes(expected)

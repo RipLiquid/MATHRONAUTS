@@ -16,7 +16,7 @@ def test_standalone_launcher_matches_source():
     spec = importlib.util.spec_from_file_location('build_launcher', ROOT / 'scripts/build_launcher.py')
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
-    assert (ROOT / 'Play-MATHRONAUTS.cmd').read_bytes() == module.build()
+    assert (ROOT / 'Play-MATHRONAUTS.cmd').read_bytes().replace(b'\r\n', b'\n') == module.build().replace(b'\r\n', b'\n')
 
 
 def test_pinned_dependencies_do_not_require_git():
