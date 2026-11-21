@@ -2,5 +2,6 @@
 *.sh text eol=lf
 gradlew text eol=lf
 *.bat text eol=crlf
+Play-MATHRONAUTS.cmd text eol=crlf
 *.png binary
 *.jar binary

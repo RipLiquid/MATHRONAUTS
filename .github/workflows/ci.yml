@@ -37,6 +37,7 @@ jobs:
         run: |
           python -m py_compile "U11-Final CPT.py"
           python -m compileall -q desktop aws/leaderboard
+          python scripts/build_launcher.py --check
 
       - name: Run automated tests
         run: |
@@ -64,3 +65,46 @@ jobs:
           python-version: "3.12"
       - name: Read live rankings without submitting scores
         run: python -m desktop.check_leaderboard
+
+  windows-setup:
+    name: Windows One-Click Setup
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Install test runner
+        run: python -m pip install pytest
+      - name: Choose private setup folder
+        shell: pwsh
+        run: |
+          $setupRoot = Join-Path $env:RUNNER_TEMP 'mathronauts-play'
+          "MATHRONAUTS_HOME=$setupRoot" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Test bootstrap branches and packaging
+        run: python -m pytest tests/test_bootstrap.py -v
+      - name: Install and run from the extracted game folder
+        shell: cmd
+        run: Play-MATHRONAUTS.cmd --smoke-test
+      - name: Test standalone download and repeat launch
+        shell: pwsh
+        run: |
+          $standalone = Join-Path $env:RUNNER_TEMP 'mathronauts-download'
+          New-Item -ItemType Directory -Path $standalone -Force | Out-Null
+          Copy-Item -LiteralPath Play-MATHRONAUTS.cmd -Destination $standalone
+          & (Join-Path $standalone 'Play-MATHRONAUTS.cmd') --smoke-test
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & (Join-Path $standalone 'Play-MATHRONAUTS.cmd') --smoke-test
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Upload Windows setup logs and smoke screenshots
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: Mathronauts-Windows-setup
+          path: |
+            ${{ env.MATHRONAUTS_HOME }}/logs/
+            ${{ env.MATHRONAUTS_HOME }}/smoke-test/*.png
+          if-no-files-found: warn
