@@ -70,8 +70,6 @@ jobs:
     name: Windows One-Click Setup
     runs-on: windows-latest
     timeout-minutes: 15
-    env:
-      MATHRONAUTS_HOME: ${{ runner.temp }}/mathronauts-play
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
@@ -81,6 +79,11 @@ jobs:
           python-version: "3.12"
       - name: Install test runner
         run: python -m pip install pytest
+      - name: Choose private setup folder
+        shell: pwsh
+        run: |
+          $setupRoot = Join-Path $env:RUNNER_TEMP 'mathronauts-play'
+          "MATHRONAUTS_HOME=$setupRoot" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
       - name: Test bootstrap branches and packaging
         run: python -m pytest tests/test_bootstrap.py -v
       - name: Install and run from the extracted game folder
