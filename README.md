@@ -4,20 +4,7 @@ MATHRONAUTS is an educational space-shooter game where players solve arithmetic 
 
 Originally developed in Python for a 2023 ICS3U Computer Science final project, it now includes an enhanced desktop launcher, native iOS and Android apps, and an optional AWS leaderboard on desktop.
 
-## Play on Windows
 
-**Double-click `Play-MATHRONAUTS.cmd`.** It sets up Python 3.12 if needed,
-installs pip and the game dependencies in a private environment, and starts
-the game. No Git, VS Code or manual environment activation is needed.
-
-- **Download the full game:** [Download ZIP](https://github.com/RipLiquid/MATHRONAUTS/archive/refs/heads/main.zip), extract it, then double-click `Play-MATHRONAUTS.cmd`.
-- **Download just the launcher:** save [Play-MATHRONAUTS.cmd](https://github.com/RipLiquid/MATHRONAUTS/raw/refs/heads/main/Play-MATHRONAUTS.cmd) as a `.cmd` file and double-click it. It downloads the game for you.
-
-The first launch needs internet and can take a few minutes. Later launches reuse
-the installed setup and ordinary gameplay works offline. Supports Windows 10/11
-on 64-bit Intel/AMD PCs. Windows or organization policy may require approval to
-run a downloaded file. See the [setup guide](scripts/README.md) for details,
-logs and updates. Manual setup for developers and other platforms is below.
 
 ## Versions
 
